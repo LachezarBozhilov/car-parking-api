@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ParkingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +18,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+Route::get('/parking/available-spots', [ParkingController::class, 'checkAvailableSpots']);
+Route::get('/parking/amount-due/{vehicleNumber}', [ParkingController::class, 'checkAmountDue']);
+Route::post('/parking/register', [ParkingController::class, 'registerVehicle']);
+Route::post('/parking/deregister', [ParkingController::class, 'deregisterVehicle']);
